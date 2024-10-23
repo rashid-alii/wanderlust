@@ -22,6 +22,7 @@ body{
 .f-info-links a {
     text-decoration: none;
     color: #222222;
+    margin: 0.2rem;
 }
 
 .f-info-links a:hover {
@@ -52,6 +53,12 @@ body{
     margin-right: 1rem;
 }
 
+footer{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
 /* Cards */
 
 .card {
@@ -71,4 +78,45 @@ body{
 }
 .listing-link{
     text-decoration: none;
+}
+
+.card-text{
+    color: #222222 !important;
+}
+
+/* Card effect/ overlays */
+
+
+.card-img-overlay{
+    opacity: 0;
+}
+.card-img-overlay:hover{
+    opacity: 0.2;
+    background-color: white;
+}
+
+/* New Page */
+
+.add-btn{
+    background-color: #fe424d !important;
+    border: none !important;
+}
+
+/* Edit Page */
+
+.edit-btn{
+    background-color: #fe424d !important;
+    border: none !important;
+}
+
+/* Show Page */
+.show-img{
+    height: 30vh;
+}
+.btns{
+    display: flex;
+}
+.show-card{
+    padding-left: 0;
+    padding-right: 0;
 }
