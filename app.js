@@ -34,6 +34,7 @@ app.get("/", (req, res) => {
 // Index Route
 app.get("/listings", async (req, res) => {
   const allListings = await Listing.find({});
+  console.log("check data",allListings)
   res.render("../views/listings/index.ejs", { allListings });
 });
 
