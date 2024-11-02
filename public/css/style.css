@@ -1,4 +1,4 @@
-body{
+body {
     font-family: "Plus Jakarta Sans", sans-serif !important;
 }
 
@@ -17,8 +17,6 @@ body{
 }
 
 /*  Footer */
-
-
 .f-info-links a {
     text-decoration: none;
     color: #222222;
@@ -53,11 +51,11 @@ body{
     margin-right: 1rem;
 }
 
-footer{
-    position: static;
-    bottom: 0
+footer {
+    position:relative;
+    bottom: 0;
     width: 100%;
-    padding-top: 50px;
+    margin-top: 50px;
 }
 
 
@@ -67,58 +65,65 @@ footer{
     border: none !important;
     margin-bottom: 2rem;
 }
-.card-img-top{
+
+.card-img-top {
     border-radius: 1rem !important;
     width: 100% !important;
     object-fit: cover !important;
 }
-.card-body{
+
+.card-body {
     padding: 0 !important;
 }
-.card-text p {
+
+card-text p {
     font-weight: 400 !important;
 }
-.listing-link{
+
+.listing-link {
     text-decoration: none;
 }
 
-.card-text{
+.card-text {
     color: #222222 !important;
 }
 
 /* Card effect/ overlays */
 
 
-.card-img-overlay{
+.card-img-overlay {
     opacity: 0;
 }
-.card-img-overlay:hover{
+
+.card-img-overlay:hover {
     opacity: 0.2;
     background-color: white;
 }
 
 /* New Page */
 
-.add-btn{
+.add-btn {
     background-color: #fe424d !important;
     border: none !important;
 }
 
 /* Edit Page */
 
-.edit-btn{
+.edit-btn {
     background-color: #fe424d !important;
     border: none !important;
 }
 
 /* Show Page */
-.show-img{
+.show-img {
     height: 30vh;
 }
-.btns{
+
+.btns {
     display: flex;
 }
-.show-card{
+
+.show-card {
     padding-left: 0;
     padding-right: 0;
 }
