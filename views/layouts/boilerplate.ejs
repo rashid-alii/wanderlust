@@ -21,7 +21,11 @@
 
 <body>
     <%- include("../includes/navbar.ejs") %>
-        <div class="container"> <%- body %> </div>
+
+        <div class="container min-vh-100">
+            <%- include("../includes/flash.ejs") %>
+                <%- body %>
+        </div>
 
 
         <%- include("../includes/footer.ejs") %>
