@@ -52,16 +52,13 @@ body {
 }
 
 footer {
-    position:relative;
-    bottom: 0;
     width: 100%;
-    margin-top: 50px;
 }
 
 
 /* Cards */
 
-.card {
+.listing-card {
     border: none !important;
     margin-bottom: 2rem;
 }
