@@ -11,7 +11,7 @@ module.exports.isLoggedIn = (req, res, next) => {
     // redirectUrl save
     req.session.redirectUrl = req.originalUrl;
     req.flash("error", "You must be logged in to create listing!");
-    res.redirect("/login");
+    return res.redirect("/login");
   }
   next();
 };
@@ -34,6 +34,8 @@ module.exports.isOwner = async (req, res, next) => {
   next();
 };
 
+
+
 // validation for schema (middleware)
 module.exports.validateListing = (req, res, next) => {
   let { error } = listingSchema.validate(req.body);
@@ -45,7 +47,9 @@ module.exports.validateListing = (req, res, next) => {
   }
 };
 
+
 // validation for review schema
+
 module.exports.validateReview = (req, res, next) => {
   let { error } = reviewSchema.validate(req.body);
   if (error) {
@@ -55,6 +59,8 @@ module.exports.validateReview = (req, res, next) => {
     next();
   }
 };
+
+
 
 module.exports.isReviewAuthor = async (req, res, next) => {
   let { id, reviewId } = req.params;
