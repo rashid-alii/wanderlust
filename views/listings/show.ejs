@@ -1,4 +1,9 @@
 <% layout("/layouts/boilerplate") %>
+<script>
+   const mapToken = "<%=process.env.MAP_TOKEN%>";
+const coordinates = <%-JSON.stringify(listing.geometry.coordinates)%>;
+const listing = <%-JSON.stringify(listing)%>;
+</script>
     <div class="row mt-3">
         <div class="col-8 offset-3">
             <h3>
@@ -37,9 +42,9 @@
             <% } %>
 
                 <div class="col-8 offset-3 mb-3">
-                    <hr>
+                   
                     <% if(currUser){ %>
-
+                        <hr>
                         <h4>Leave a Review</h4>
                         <form action="/listings/<%= listing.id %>/reviews" method="post" novalidate
                             class="needs-validation">
@@ -74,7 +79,7 @@
                         </form>
                         <hr>
                         <% } %>
-                        <% if(listing.reviews.length > 0) { %> 
+                        <% if (listing.reviews && Array.isArray(listing.reviews) && listing.reviews.length > 0) { %>
                             <div class="row">
                               <p><b>All reviews </b></p>
                               <%for(review of listing.reviews){ %>
@@ -86,7 +91,7 @@
                                     data-rating="<%= review.rating %>"
                                   ></p>
                                   <p class="card-text"><%= review.comment %></p>
-                                </div>
+                               
                                 <form
                                   class="mb-3 mt-2"
                                   method="post"
@@ -94,10 +99,17 @@
                                 >
                                   <button class="btn btn-sm btn-dark">Delete</button>
                                 </form>
+                            </div>
                               </div>
                         
                               <% } %>
                             </div>
                             <% } %>
                 </div>
+                <div class="col-8 offset-3 mb-3">
+                    <h3>Where you'll be</h3>
+                    <div id="map"></div>
+                </div> 
     </div>
+
+    <script src="/JS/map.js"></script>
