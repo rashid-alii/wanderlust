@@ -79,10 +79,10 @@ const listing = <%-JSON.stringify(listing)%>;
                         </form>
                         <hr>
                         <% } %>
-                        <% if (listing.reviews && Array.isArray(listing.reviews) && listing.reviews.length > 0) { %>
+                        <% if (listing.review && Array.isArray(listing.review) && listing.review.length > 0) { %>
                             <div class="row">
                               <p><b>All reviews </b></p>
-                              <%for(review of listing.reviews){ %>
+                              <%for(review of listing.review){ %>
                               <div class="card col-5 ms-3 mb-3">
                                 <div class="card-body">
                                   <h5 class="card-title">@<%= review.author.username %></h5>
@@ -94,6 +94,7 @@ const listing = <%-JSON.stringify(listing)%>;
                                
                                 <form
                                   class="mb-3 mt-2"
+                  
                                   method="post"
                                   action="/listings/<%= listing._id %>/reviews/<%= review._id %>?_method=Delete"
                                 >
