@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const Review = require("./review");
-const { ref } = require("joi");
+const { ref, required } = require("joi");
 
 const listingSchema = new Schema({
   title: {
@@ -37,10 +37,13 @@ const listingSchema = new Schema({
       required: true
     },
   },
-  // category: {
-  //   type: String,
-  //   enum: ["mountain", "arctic", "farms", "room", "castles", "amazing pools", "camping", "trending"]
-  // }
+  category: {
+    type: String,
+    enum: ["Trending",  "RoomS", "Iconic Cities",
+    "Mountain", "Castles", "Amazing Pools", "Camping",
+    "Farms", "Arctic", "Domes", "Boats", "New"],
+    required: true
+  }
 });
 
 listingSchema.post("findOneAndDelete", async (listing) => {
