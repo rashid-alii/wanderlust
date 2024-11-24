@@ -27,7 +27,6 @@ router
 router.get("/new", isLoggedIn, listingController.randerNewForm);
 
 
-
 //Show Route
 // Update Route
 // delete route
