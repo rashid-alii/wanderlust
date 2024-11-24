@@ -22,9 +22,12 @@ const User = require("./models/user.js");
 const listingRouter = require("./routes/listing.js");
 const reviewRouter = require("./routes/review.js");
 const userRouter = require("./routes/user.js");
+const Listings = require("./models/listing.js");
 const cookie = require("express-session/session/cookie.js");
 
+//DataBase for storing data
 const MONGO_URL = "mongodb://127.0.0.1:27017/wanderlust";
+
 
 main()
   .then(() => {
@@ -97,11 +100,33 @@ next();
 // });
 
 
+
 app.use("/listings", listingRouter);
 app.use("/listings/:id/reviews", reviewRouter);
 app.use("/", userRouter);
 
 
+
+// Searching
+app.get("/listings/search/:searchValue",async(req,res)=>{
+  const searchTerm = req.query.searchTerm;
+  const query = {
+      $or: [
+        { title: new RegExp(searchTerm, 'i') }, 
+        { location: new RegExp(searchTerm, 'i') },
+        { country: new RegExp(searchTerm, 'i') },
+        { description: new RegExp(searchTerm, 'i') }
+      ]
+    };
+    try {
+
+      const allListings = await Listings.find(query);
+      res.render("listings/index.ejs", { allListings });
+    } catch (error) {
+      next(error);
+    }
+
+});
 
 
 
@@ -130,6 +155,8 @@ app.use((err, req, res, next) => {
   res.status(statusCode).render("error.ejs", { message });
   // res.status(statusCode).send(message);
 });
+
+
 
 app.listen(8080, () => {
   console.log("server is listening to port 8080");
