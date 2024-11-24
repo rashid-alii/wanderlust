@@ -16,45 +16,35 @@ body {
     color: #222222 !important;
 }
 
-/*  Footer */
-.f-info-links a {
-    text-decoration: none;
-    color: #222222;
-    margin: 0.2rem;
+/* footer */
+.f-info-links a{
+ text-decoration: none;
+ color: #000;
 }
+.f-info-links a:hover{
+  text-decoration: underline;
+ }
+ .f-info-links,.f-info-socials,.f-info-brand{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+ }
+ 
+ .f-info-socials i{
+  margin-right: 1rem;
+  font-size: 1.2rem;
+ }
+.f-info{
+  text-align: center;
+  display: flex;
+  height: 8rem;
+  background-color: #ebebeb;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: space-evenly;
 
-.f-info-links a:hover {
-    text-decoration: underline;
 }
-
-.f-info {
-    text-align: center;
-    height: 8rem;
-    background-color: #ebebeb;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: space-evenly;
-}
-
-.f-info-links,
-.f-info-socials,
-.f-info-brand {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.f-info-socials i {
-    font-size: 1.2rem;
-    margin-right: 1rem;
-}
-
-footer {
-    width: 100%;
-}
-
 
 /* Cards */
 
@@ -109,6 +99,7 @@ card-text p {
 .edit-btn {
     background-color: #fe424d !important;
     border: none !important;
+
 }
 
 /* Show Page */
@@ -132,3 +123,66 @@ card-text p {
   height: 400px;
   width: 80vh;
 }
+
+
+/* navbar */
+/* Search option in Navbar */
+.search-bar{
+    background-color: white;
+
+}
+.search-btn i{
+    display: inline !important;
+    margin-right: 0.5rem !important;
+}
+
+.search-btn{
+    background-color: #fe424d;
+    color: #fff;
+    border-radius: 25px;
+    padding: 0 1rem 0 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.search-btn:hover{
+    background-color: #fe424d;
+    color: #fff;
+}
+.search-btn i{
+    display: inline;
+    margin-right: 0.5rem;   
+}
+.search-input{
+    border-radius: 25px;
+    padding: 0.5rem 3rem 0.5rem 3rem;
+    font-size: 1rem;
+}
+
+
+/* filter icon */
+.hidden {
+    display: none;
+}
+
+@media screen and (max-width: 992px) {
+#map {
+    height: 300px;
+      width: 50vh;
+
+    }
+  }
+@media screen and (max-width: 768px) {
+#map {
+    height: 200px;
+      width: 40vh;
+
+    }
+  }
+@media screen and (max-width: 490px) {
+#map {
+    height: 200px;
+      width: 30vh;
+
+    }
+  }
