@@ -26,19 +26,16 @@
                 
             </div>
 
-            <div id="login-logout" class="d-flex flex-wrap ms-auto">
-                <% if(currUser){ %>
-                <a class="nav-link mx-1" href="/listings/new">Airbnb your home</a>
-                <% } %> <%if(!currUser){ %>
-                <a class="nav-link mx-1" href="/signup"><b>Sign Up</b></a>
-                <a class="nav-link mx-1" href="/login"><b>Login</b></a>
-                <% } %> <% if(currUser){ %>
-                <a class="nav-link mx-1" href="/logout"><b>Logout</b></a>
-                <% } %>
+            <div class="navbar-nav ms-auto">
+                <a class="nav-link" href="/listings/new">Airbnb your home</a>
+                <% if(!currUser) { %>
+                    <a class="nav-link" href="/signup"><b>Sign up</b></a>
+                    <a class="nav-link" href="/login"><b>Log in</b></a>
+                    <% } %>
+                <% if(currUser) { %>
+                    <a class="nav-link" href="/logout"><b>Log out</b></a>
+                    <% } %>
             </div>
         </div>
     </div>
 </nav>
-
-
-
