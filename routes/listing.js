@@ -17,7 +17,7 @@ router
   .get(wrapAsync(listingController.index))
   .post(
     isLoggedIn,
-    upload.single("listing[image][url]"),
+    upload.single("listing[image]"),
     validateListing,
     wrapAsync(listingController.createListing)
   );
@@ -25,6 +25,7 @@ router
 
 //New Route
 router.get("/new", isLoggedIn, listingController.randerNewForm);
+
 
 
 //Show Route
@@ -36,7 +37,7 @@ router
   .put(
     isLoggedIn,
     isOwner,
-    upload.single("listing[image][url]"),
+    upload.single("listing[image]"),
     validateListing,
     wrapAsync(listingController.updateListing)
   )
