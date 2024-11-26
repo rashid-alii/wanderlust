@@ -51,9 +51,7 @@ const listing = <%-JSON.stringify(listing)%>;
 
                             <div class="mb-3 mt-3">
                                 <label for="rating" class="form-label">Rating</label>
-                                <fieldset class="starability-slot">
-                                    <input type="radio" id="no-rate" class="input-no-rate" name="review[rating]"
-                                        value="0" checked aria-label="No rating." />
+                                <fieldset class="starability-slot" id="ratingFieldset">
                                     <input type="radio" id="first-rate1" name="review[rating]" value="1" />
                                     <label for="first-rate1" title="Terrible">1 star</label>
                                     <input type="radio" id="first-rate2" name="review[rating]" value="2" />
@@ -65,20 +63,24 @@ const listing = <%-JSON.stringify(listing)%>;
                                     <input type="radio" id="first-rate5" name="review[rating]" value="5" />
                                     <label for="first-rate5" title="Amazing">5 stars</label>
                                 </fieldset>
-                            </div>
-
-                            <div class="mb-3 mt-3">
-                                <label for="comment" class="form-label">Comments</label>
-                                <textarea name="review[comment]" id="comment" cols="30" rows="5" class="form-control"
-                                    required></textarea>
-                                <div class="invalid-feedback">
-                                    Please add some comments for review
+                                <div id="error-message" class="alert alert-danger mt-3" style="display:none;">
+                                    Choose a rating to continue.
                                 </div>
                             </div>
-                            <button class=" btn btn-outline-dark">Summit</button>
+                            
+                            <div class="mb-3 mt-3">
+                                <label for="comment" class="form-label">Comments</label>
+                                <textarea name="review[comment]" id="comment" cols="30" rows="5" class="form-control" required></textarea>
+                                <div class="invalid-feedback">
+                                    Please add some comments for review.
+                                </div>
+                            </div>
+                            
+                            <button type="submit" class="btn btn-outline-dark" id="submitBtn">Submit</button>
                         </form>
                         <hr>
                         <% } %>
+                        
                         <% if (listing.review && Array.isArray(listing.review) && listing.review.length > 0) { %>
                             <div class="row">
                               <p><b>All reviews </b></p>
@@ -111,5 +113,19 @@ const listing = <%-JSON.stringify(listing)%>;
                     <div id="map"></div>
                 </div> 
     </div>
-
+    <script>
+        document.querySelector("#submitBtn").addEventListener("click", function(event) {
+            const rating = document.querySelector('input[name="review[rating]"]:checked');
+            
+            const errorMessageDiv = document.getElementById("error-message");
+            
+            if (!rating || parseInt(rating.value) < 1) {
+                event.preventDefault(); 
+        
+                errorMessageDiv.style.display = "block";
+            } else {
+                errorMessageDiv.style.display = "none"; 
+            }
+        });
+        </script>
     <script src="/JS/map.js"></script>
