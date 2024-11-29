@@ -10,6 +10,21 @@ const multer  = require('multer');
 const{ storage } = require("../cloudConfig.js");
 const upload = multer({ storage });
 
+
+// Route to get all listings with optional category filter
+router.get("/listings", async (req, res) => {
+  try {
+    const { category } = req.query; // Get category from query parameters
+    const filter = category ? { category } : {}; // Apply filter only if category exists
+    const allListings = await Listing.find(filter);
+    res.render("listings/index", { allListings });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Server Error");
+  }
+});
+
+
 //index route
 //create route
 router
