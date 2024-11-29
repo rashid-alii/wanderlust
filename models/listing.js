@@ -40,7 +40,7 @@ const listingSchema = new Schema({
   category: {
     type: String,
     enum: ["Trending",  "RoomS", "Iconic Cities",
-    "Mountain", "Castles", "Amazing Pools", "Camping",
+    "Mountains", "Castles", "Amazing Pools", "Camping",
     "Farms", "Arctic", "Domes", "Boats", "New"],
     required: true
   }
@@ -51,7 +51,6 @@ listingSchema.post("findOneAndDelete", async (listing) => {
     await Review.deleteMany({ _id: { $in: listing.review } });
   }
 });
-
 
 const Listing = mongoose.model("Listing", listingSchema);
 module.exports = Listing;
