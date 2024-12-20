@@ -1,72 +1,85 @@
 <% layout("/layouts/boilerplate") %>
 
+    <body>
+        <!-- All Listings icon filter-->
 
-<div id="filters">
-<div class="filter">
-   <div><i class="fa-solid fa-fire"></i></div>
-   <p>Trending</p>
-</div>
-<div class="filter">
-    <div><i class="fa-solid fa-n"></i></i></div>
-    <p>New</p>
- </div>
-<div class="filter">
-   <div><i class="fa-solid fa-bed"></i></div>
-   <p>Rooms</p>
-</div>
-<div class="filter">
-   <div><i class="fa-solid fa-mountain-city"></i></div>
-   <p>Iconic Cities</p>
-</div>
-<div class="filter">
-   <div><i class="fa-solid fa-mountain"></i></div>
-   <p>Mountains</p>
-</div>
-<div class="filter">
-   <div><i class="fa-brands fa-fort-awesome"></i></div>
-   <p>Castles</p>
-</div>
-<div class="filter">
-   <div><i class="fa-solid fa-person-swimming"></i></div>
-   <p>Amazing Pools</p>
-</div>
-<div class="filter">
-   <div><i class="fa-solid fa-campground"></i></div>
-   <p>Camping</p>
-</div>
-<div class="filter">
-   <div><i class="fa-solid fa-cow"></i></div>
-   <p>Farms</p>
-</div>
-<div class="filter">
-   <div><i class="fa-regular fa-snowflake"></i></div>
-   <p>Arctic</p>
-</div>
-<div class="filter">
-    <div><i class="fa-solid fa-igloo"></i></div>
-    <p>Domes</p>
- </div>
- <div class="filter">
-    <div><i class="fa-solid fa-ship"></i></div>
-    <p>Boats</p>
- </div>
- 
-<div class="tax-toggle">
-    <div class="form-check-reverse form-switch">
-        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
-        <label class="form-check-label" for="flexSwitchCheckDefault">Display total after taxes</label>
-      </div>
-      
-</div>
-</div>
+        <div id="filters">
+            <div class="left-filter">
+                <!-- <i class="fa-solid fa-chevron-left left-btn"></i>
+                <i class="fa-solid fa-chevron-right right-btn"></i> -->
+                <div class="filter-box">
+                    <div class="filter" onclick="filterCategory('Trending')">
+                        <div> <i class="fa-solid fa-fire"></i></div>
+                        <p>Trending</p>
+                    </div>
 
-    <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 mt-3">
-        <% for(let listing of allListings) { %>
-            <div class="col">
+                    <div class="filter" onclick="filterCategory('New')">
+                        <div><i class="fa-solid fa-n"></i></div>
+                        <p>New</p>
+                    </div>
+                    <div class="filter" onclick="filterCategory('Hotels')">
+                        <div><i class="fa-solid fa-hotel"></i></div>
+                        <p>Hotels</p>
+                    </div>
+                    <div class="filter" onclick="filterCategory('Rooms')">
+                        <div><i class="fa-solid fa-bed"></i></div>
+                        <p>Rooms</p>
+                    </div>
+                    <div class="filter" onclick="filterCategory('Iconic Cities')">
+                        <div><i class="fa-solid fa-mountain-city"></i></div>
+                        <p>Iconic Cities</p>
+                    </div>
+                    <div class="filter" onclick="filterCategory('Mountains')">
+                        <div><i class="fa-solid fa-mountain"></i></div>
+                        <p>Mountains</p>
+                    </div>
+                    <div class="filter" onclick="filterCategory('Castles')">
+                        <div><i class="fa-brands fa-fort-awesome"></i></div>
+                        <p>Castles</p>
+                    </div>
+                    <div class="filter" onclick="filterCategory('Amazing pools')">
+                        <div><i class="fa-solid fa-water-ladder"></i></div>
+                        <p>Amazing pools</p>
+                    </div>
+                    <div class="filter" onclick="filterCategory('Camping')">
+                        <div><i class="fa-solid fa-tent"></i></div>
+                        <p>Campimg</p>
+                    </div>
+                    <div class="filter" onclick="filterCategory('Farm')">
+                        <div><i class="fa-solid fa-cow"></i></div>
+                        <p>Farm</p>
+                    </div>
+                    <div class="filter" onclick="filterCategory('Arctic')">
+                        <div><i class="fa-regular fa-snowflake"></i></div>
+                        <p>Arctic</p>
+                    </div>
+                    <div class="filter" onclick="filterCategory('Domes')">
+                        <div><i class="fa-solid fa-igloo"></i></div>
+                        <p>Domes</p>
+                    </div>
+                    <div class="filter" onclick="filterCategory('Boats')">
+                        <div><i class="fa-solid fa-ship"></i></div>
+                        <p>Boats</p>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="tax-toggle">
+                <div class="form-check-reverse form-switch">
+                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+                    <label class="form-check-label" for="flexSwitchCheckDefault">Display total after taxes</label>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 mt-3">
+            <% for(let listing of allListings) { %>
                 <a href="/listings/<%= listing._id %>" class="listing-link">
-                    <div class="card listing-card">
+                    <div class="card col listing-card">
                         <img src="<%= listing.image.url %>" class="card-img-top" alt="listing_image"
-                            style="height: 20rem;">
+                            style="height: 15rem;">
 
                         <div class="card-img-overlay"> </div>
 
@@ -76,28 +89,34 @@
                                     <%= listing.title %>
                                 </b> <br>
                                 &#8377 <%= listing.price.toLocaleString("en-IN") %> / night
-                                <i class="tax-info"> &nbsp; &nbsp;+18% GST</i>
+                                    <i class="tax-info"> &nbsp; &nbsp;+18% GST</i>
                             </p>
-
                         </div>
                     </div>
                 </a>
-            </div>
-            <% } %>
-    </div>
+                <% } %>
+        </div>
 
 
-    <script>
-let taxSwitch = document.getElementById("flexSwitchCheckDefault");
-taxSwitch.addEventListener("click", () =>{
-    let taxInfo = document.getElementsByClassName("tax-info");
-      for(info of taxInfo){
-        if(info.style.display != "inline"){
-            info.style.display = "inline";
-        } else{
-            info.style.display = "none";
-        }
-        
-      }
-});
-    </script>
+        <script>
+            let taxSwitch = document.getElementById("flexSwitchCheckDefault");
+            taxSwitch.addEventListener("click", () => {
+                let taxInfo = document.getElementsByClassName("tax-info");
+                for (info of taxInfo) {
+                    if (info.style.display != "inline") {
+                        info.style.display = "inline";
+                    } else {
+                        info.style.display = "none";
+                    }
+
+                }
+            })
+
+            let filterCategory = (category) => {
+                // Redirect to the specified category
+                window.location.href = `/listings/?category=${encodeURIComponent(
+                    category
+                )}`;
+            };
+        </script>
+    </body>
