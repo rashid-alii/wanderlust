@@ -61,14 +61,12 @@ const sessionOptions = {
 };
 
 
-// app.get("/", (req, res) => {
-//   res.send("Hi, I am root");
-// });
 
 
 app.use(session(sessionOptions));
 app.use(flash());
 
+// ........Passport ..........
 
 app.use(passport.initialize());
 app.use(passport.session());
@@ -89,17 +87,9 @@ next();
 });
 
 
-// app.get("/demouser", async (req, res) => {
-//   let fakeUser = new User({
-//     email: "student@gmail.com",
-//     username: "delta-stud",
-//   });
-
-//   let registeredUser = await User.register(fakeUser, "helloworld");
-//   res.send(registeredUser);
-// });
 
 
+// ...... Routes ............
 
 app.use("/listings", listingRouter);
 app.use("/listings/:id/reviews", reviewRouter);
@@ -128,22 +118,6 @@ app.get("/listings/search/:searchValue",async(req,res)=>{
 
 });
 
-
-
-// app.get("/testListing", async (req, res) => {
-//   let sampleListing = new Listing({
-//     title: "My new Villa",
-//     description: "By the beach",
-//     price: 1200,
-//     location: "Calangute, Goa",
-//     country: "India",
-//   });
-
-//   await sampleListing.save();
-//   console.log("sample was saved");
-//   res.send("successful testing");
-// });
-
 // random page error
 app.all("*", (req, res, next) => {
   next(new ExpressError(404, "Page Not Found!"));
@@ -153,8 +127,8 @@ app.all("*", (req, res, next) => {
 app.use((err, req, res, next) => {
   let { statusCode = 500, message = "Something went wrong!" } = err;
   res.status(statusCode).render("error.ejs", { message });
-  // res.status(statusCode).send(message);
 });
+
 
 
 app.listen(8080, () => {
