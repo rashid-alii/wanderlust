@@ -1,31 +1,35 @@
 <% layout("/layouts/boilerplate") %>
-<script>
-   const mapToken = "<%=process.env.MAP_TOKEN%>";
-const coordinates = <%-JSON.stringify(listing.geometry.coordinates)%>;
-const listing = <%-JSON.stringify(listing)%>;
-</script>
-    <div class="row mt-3">
-        <div class="col-8 offset-3">
-            <h3>
-                <%= listing.title %>
-            </h3>
-        </div>
-        <div class="card col-6 offset-3 show-card listing-card">
-            <img src="<%= listing.image.url %>" class="card-img-top show-img" alt="listing_image">
-            <div class="card-body">
-                <p class="card-text"><i>Owned by <%= listing.owner.username %> </i></p>
-                <p class="card-text">
-                    <%= listing.description %>
-                </p>
-                <p class="card-text"></p>&#8377 <%= listing.price.toLocaleString("en-IN") %>
-                    </p>
-                    <p class="card-text">
-                        <%= listing.location %>
-                    </p>
-                    <p class="card-text">
-                        <%= listing.country %>
-                    </p>
 
+    <body>
+        <script>
+            const mapToken = "<%=process.env.MAP_TOKEN%>";
+            const coordinates = <% -JSON.stringify(listing.geometry.coordinates) %>;
+            const listing = <% -JSON.stringify(listing) %>;
+        </script>
+        <div class="row mt-3">
+            <div class="col-8 offset-3">
+                <h3>
+                    <%= listing.title %>
+                </h3>
+            </div>
+
+            <div class="card col-6 offset-3 show-card listing-card">
+                <img src="<%= listing.image.url %>" class="card-img-top show-img" alt="listing_image">
+                <div class="card-body">
+                    <p class="card-text"><i>Owned by <%= listing.owner.username %> </i></p>
+                    <p class="card-text">
+                        <%= listing.description %>
+                    </p>
+                    <p class="card-text"></p>&#8377 <%= listing.price.toLocaleString("en-IN") %>
+                        </p>
+                        <p class="card-text">
+                            <%= listing.location %>
+                        </p>
+                        <p class="card-text">
+                            <%= listing.country %>
+                        </p>
+
+                </div>
             </div>
         </div>
 
@@ -41,8 +45,10 @@ const listing = <%-JSON.stringify(listing)%>;
             </div>
             <% } %>
 
-                <div class="col-8 offset-3 mb-3">
-                   
+                <!---------------------- Reviews  ------------>
+
+                <div class="col-7 offset-3 mb-3">
+
                     <% if(currUser){ %>
                         <hr>
                         <h4>Leave a Review</h4>
@@ -63,69 +69,174 @@ const listing = <%-JSON.stringify(listing)%>;
                                     <input type="radio" id="first-rate5" name="review[rating]" value="5" />
                                     <label for="first-rate5" title="Amazing">5 stars</label>
                                 </fieldset>
-                                <div id="error-message" class="alert alert-danger mt-3" style="display:none;">
+                                <div id="error-message" class="invalid-feedback">
                                     Choose a rating to continue.
                                 </div>
                             </div>
-                            
-                            <div class="mb-3 mt-3">
+
+                            <div class="mb-3">
                                 <label for="comment" class="form-label">Comments</label>
-                                <textarea name="review[comment]" id="comment" cols="30" rows="5" class="form-control" required></textarea>
+                                <textarea name="review[comment]" id="comment" cols="30" rows="5" class="form-control"
+                                    required></textarea>
                                 <div class="invalid-feedback">
-                                    Please add some comments for review.
+                                    Please add some comments for reviews.
                                 </div>
                             </div>
-                            
+
                             <button type="submit" class="btn btn-outline-dark" id="submitBtn">Submit</button>
                         </form>
                         <hr>
                         <% } %>
-                        
-                        <% if (listing.review && Array.isArray(listing.review) && listing.review.length > 0) { %>
-                            <div class="row">
-                              <p><b>All reviews </b></p>
-                              <%for(review of listing.review){ %>
-                              <div class="card col-5 ms-3 mb-3">
-                                <div class="card-body">
-                                  <h5 class="card-title">@<%= review.author.username %></h5>
-                                  <p
-                                    class="starability-result card-text"
-                                    data-rating="<%= review.rating %>"
-                                  ></p>
-                                  <p class="card-text"><%= review.comment %></p>
-                               
-                                <form
-                                  class="mb-3 mt-2"
-                  
-                                  method="post"
-                                  action="/listings/<%= listing._id %>/reviews/<%= review._id %>?_method=Delete"
-                                >
-                                  <button class="btn btn-sm btn-dark">Delete</button>
-                                </form>
-                            </div>
-                              </div>
-                              <% } %>
-                            </div>
-                            <% } %>
+
+                            <% if (listing.review && Array.isArray(listing.review) && listing.review.length> 0) { %>
+                                <p><b>All reviews </b></p>
+                                <div class="row">
+                                    <%for(review of listing.review){ %>
+                                        <div class="card col-5 ms-3 mb-3">
+                                            <div class="card-body">
+                                                <h5 class="card-title">@<%= review.author.username %>
+                                                </h5>
+                                                <p class="starability-result card-text"
+                                                    data-rating="<%= review.rating %>"></p>
+                                                <p class="card-text">
+                                                    <%= review.comment %>
+                                                </p>
+                                            </div>
+                                            <form class="mb-3 mt-2" method="post"
+                                                action="/listings/<%= listing._id %>/reviews/<%= review._id %>?_method=Delete">
+                                                <button class="btn btn-sm btn-dark">Delete</button>
+                                            </form>
+                                        </div>
+                                        <% } %>
+                                </div>
+                                <% } %>
                 </div>
+
+
+                <hr class="col-8 offset-3 mt-3 mb-3 ">
+                <!-- ----------------------------- more aminites ---------------------- -->
+                <div class=" col-8 offset-3 mt-3 mb-3 ">
+                    <h3 class="mb-5">What this place offers</h3>
+                    <div class="aminites">
+                        <div class="aminitiy-1 col-5 ">
+                            <div class="aminity"><i class="fa-solid fa-tv"></i>
+                                <p>TV</p>
+                            </div>
+                            <div class="aminity"><i class="fa-solid fa-wifi"></i>
+                                <p> Wifi</p>
+                            </div>
+                            <div class="aminity"><i class="fa-solid fa-seedling"></i>
+                                <p>Garden</p>
+                            </div>
+                            <div class="aminity"><i class="fa-solid fa-car"></i>
+                                <p>Free parking on premises</p>
+                            </div>
+                        </div>
+                        <div class="aminity-2">
+                            <div class="aminity"><i class="fa-solid fa-shower"></i>
+                                <p>Hot water</p>
+                            </div>
+                            <div class="aminity"><i class="fa-solid fa-fire-extinguisher"></i>
+                                <p>Fire-extinguisher</p>
+                            </div>
+                            <div class="aminity"><i class="fa-regular fa-snowflake"></i>
+                                <p>Air conditioning</p>
+                            </div>
+                            <div class="aminity"><i class="fa-solid fa-kit-medical"></i>
+                                <p>First aid kit</p>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="aminities-btn open-dialog">Show all aminities</button>
+                </div>
+
+                <dialog class="dialog">
+                    <button class="close-dialog"><i class="fa-solid fa-xmark"></i></button>
+                    <h3 class="mb-5 mt-3 ">What this place offers</h3>
+                    <div class="aminity-1">
+                        <h5 class="mb-4">Heating and cooling</h5>
+                        <div class="aminity"><i class="fa-solid fa-fire-burner"></i>
+                            <p>Indoor fireplace</p>
+                        </div>
+                        <hr>
+                        <div class="aminity"><i class="fa-regular fa-snowflake"></i>
+                            <p>Air conditioning</p>
+                        </div>
+                        <hr>
+                        <div class="aminity"><i class="fa-solid fa-temperature-half"></i>
+                            <p>Central heating</p>
+                        </div>
+                        <hr>
+                        <div class="aminity"><i class="fa-solid fa-temperature-half"></i>
+                            <p>Portable heater</p>
+                        </div>
+                        <hr>
+                    </div>
+
+                    <div class="aminitiy-2 mt-5">
+                        <h5 class="mb-4">Entertainment</h5>
+                        <div class="aminity"><i class="fa-solid fa-tv"></i>
+                            <p>Hot water</p>
+                        </div>
+                        <hr>
+                        <div class="aminity"><i class="fa-brands fa-soundcloud"></i>
+                            <p>Sound system with Bluetooth and aux</p>
+                        </div>
+                        <hr>
+                    </div>
+
+                    <div class="aminity-3 mt-5">
+                        <h5 class="mb-4">Home safety</h5>
+                        <div class="aminity"><i class="fa-solid fa-fire-extinguisher"></i>Fire extinguisher</div>
+                        <hr>
+                        <div class="aminity"><i class="fa-solid fa-suitcase-medical"></i>First aid</div>
+                    </div>
+
+                    <div class="aminity-3 mt-5">
+                        <h5 class="mb-4">Internet and office</h5>
+                        <div class="aminity"><i class="fa-solid fa-wifi"></i>Wifi</div>
+                        <hr>
+                        <div class="aminity"><i class="fa-solid fa-people-roof"></i>Dedicated workspace</div>
+                    </div>
+                </dialog>
+
+
                 <div class="col-8 offset-3 mb-3">
                     <h3>Where you'll be</h3>
-                    <div id="map"></div>
-                </div> 
-    </div>
-    <script>
-        document.querySelector("#submitBtn").addEventListener("click", function(event) {
-            const rating = document.querySelector('input[name="review[rating]"]:checked');
-            
-            const errorMessageDiv = document.getElementById("error-message");
-            
-            if (!rating || parseInt(rating.value) < 1) {
-                event.preventDefault(); 
-        
-                errorMessageDiv.style.display = "block";
-            } else {
-                errorMessageDiv.style.display = "none"; 
-            }
-        });
-        </script>
-    <script src="/JS/map.js"></script>
+                    <h6>
+                        <%=listing.location %>, <%=listing.country%>
+                    </h6>
+                    <div id="map" class="mt-3 mb-3"></div>
+                </div>
+                </div>
+                <script>
+                    document.querySelector("#submitBtn").addEventListener("click", function (event) {
+                        const rating = document.querySelector('input[name="review[rating]"]:checked');
+
+                        const errorMessageDiv = document.getElementById("error-message");
+
+                        if (!rating || parseInt(rating.value) < 1) {
+                            event.preventDefault();
+
+                            errorMessageDiv.style.display = "block";
+                        } else {
+                            errorMessageDiv.style.display = "none";
+                        }
+                    });
+                </script>
+
+                <script>
+                    const Dialog = document.querySelector("dialog");
+                    const openDialog = document.querySelector(".open-dialog");
+                    const closeDialog = document.querySelector(".close-dialog");
+
+                    openDialog.addEventListener("click", () => {
+                        Dialog.showModal();
+                    });
+                    closeDialog.addEventListener("click", () => {
+                        Dialog.close();
+                    })
+                </script>
+                <script src="/JS/map.js"></script>
+
+    </body>
