@@ -1,49 +1,77 @@
 body {
-    font-family: "Plus Jakarta Sans", sans-serif !important;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
+
+.container{
+    flex: 1;
+}
+
+/* Nav Bar */
 
 .navbar {
     height: 5rem;
     background-color: white;
+    margin-left: 1rem;
+    margin-right: 1rem;
 }
 
+/* icon styling */
 .fa-compass {
     color: #fe424d;
     font-size: 2rem;
 }
 
+/* text inside the nav */
 .nav-link {
     color: #222222 !important;
 }
 
+.nav-link::after{
+    content: '';
+    display: block;
+    height: 2px;
+    transform-origin: left;
+    width: 100%;
+    background-color: black;
+    transform: scale(0);
+    transition: transform  0.3s ease;
+}
+.nav-link:hover::after{
+    transform:scale(1);
+}
+
 /* footer */
+
 .f-info-links a{
- text-decoration: none;
- color: #000;
+    text-decoration: none;
+    color:#222222; 
+    vertical-align: middle;
 }
 .f-info-links a:hover{
-  text-decoration: underline;
- }
- .f-info-links,.f-info-socials,.f-info-brand{
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
- }
- 
- .f-info-socials i{
-  margin-right: 1rem;
-  font-size: 1.2rem;
- }
-.f-info{
-  text-align: center;
-  display: flex;
-  height: 8rem;
-  background-color: #ebebeb;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: space-evenly;
+    text-decoration: underline;
+}
 
+.f-info-links ,.f-info-socials, .f-info-brand{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content:center;
+}
+.f-info-socials i{
+    margin-right:0.5rem;
+    color:#000 !important;
+    font-size:1.5rem;
+}
+.f-info{
+    text-align: center;
+    height: 8rem;
+    background-color: #ebebeb;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content:center;
+    align-items: space-evenly;
 }
 
 /* Cards */
@@ -63,20 +91,17 @@ body {
     padding: 0 !important;
 }
 
-card-text p {
-    font-weight: 400 !important;
+.card-text{
+    font-family: "Plus Jakarta Sans";
+    font-weight:500 !important;
 }
 
 .listing-link {
     text-decoration: none;
 }
 
-.card-text {
-    color: #222222 !important;
-}
 
 /* Card effect/ overlays */
-
 
 .card-img-overlay {
     opacity: 0;
@@ -104,7 +129,7 @@ card-text p {
 
 /* Show Page */
 .show-img {
-    height: 30vh;
+    height: 35vh;
 }
 
 .btns {
@@ -122,6 +147,7 @@ card-text p {
 #map {
   height: 400px;
   width: 80vh;
+  border-radius:10px;
 }
 
 
@@ -160,10 +186,57 @@ card-text p {
 }
 
 
-/* filter icon */
-.hidden {
-    display: none;
-}
+/* ============================ aminities ====================== */
+.aminites{
+    display: flex;
+    }
+    .aminity{
+        display: flex;
+        margin-bottom: 1rem;
+    }
+    .aminity p{
+        font-size: 1rem;
+        font-weight: 500;
+    }
+    .aminity i{
+        font-size: 1.4rem;
+        width: 40px;
+        margin-right: 10px;
+    }
+    .aminities-btn{
+        height: 47px;
+        padding:0 1rem 0 1rem;
+        border-radius: 10px;
+        border: 1px solid black;
+        background-color: #fff;
+        font-size:1.12rem;
+    }
+    .aminities-btn:hover{
+        background-color: #ebe7e7;
+    }
+    
+    
+    /* =================Dialog==================== */
+    .dialog{
+        width:60%;
+        height:70%;
+        border-radius: 20px;
+        background-color: #fff;
+        border: 1px solid black;
+        overscroll-behavior:auto contain;
+    }
+    .dialog::-webkit-scrollbar {
+        display: none;
+    }
+    .close-dialog{
+        border-radius: 50%;
+        background-color: #fff;
+        border: none;
+    }
+    .close-dialog:hover{
+        background-color: #ede6e6;
+    }
+
 
 @media screen and (max-width: 992px) {
 #map {
