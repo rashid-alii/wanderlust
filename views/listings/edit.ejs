@@ -1,4 +1,5 @@
 <% layout("/layouts/boilerplate") %>
+<body>
   <div class="row mb-3">
     <div class="col-8 offset-2">
 
@@ -11,13 +12,16 @@
           <div class="valid-feedback">
             Looks good!
           </div>
+          <div class="invalid-feedback">
+            Please enter a title.
+          </div>
         </div>
 
         <div class="mb-3">
           <label for="description" class="form-label">Description</label>
           <textarea name="listing[description]" class="form-control" required><%= listing.description %> </textarea>
           <div class="invalid-feedback">
-            Please enter a short description
+            Please enter a short description.
           </div>
         </div>
 
@@ -29,7 +33,7 @@
 
         <div class="mb-3">
           <label for="image" class="form-label">Upload New Image</label>
-          <input name="listing[image][url]" type="file" class="form-control" />
+          <input name="listing[image]" type="file" class="form-control" />
 
         </div>
 
@@ -69,7 +73,7 @@
             <option value="Camping">Camping</option>
             <option value="Farms">Farms</option>
             <option value="Arctic">Arctic</option>
-            <option value="Beachfront">Domes</option>
+            <option value="Domes">Domes</option>
             <option value="Boats">Boats</option>
           </select>
           <div class="invalid-feedback">Please Select Category!</div>
@@ -88,3 +92,4 @@
 
     </div>
   </div>
+</body>
